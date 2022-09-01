@@ -8,11 +8,11 @@ I plan to use this github repository as a means to organize our changes and sync
 To Do tasks should be loosely organized with newest first and oldest last.
 
 #### Logistics
-- [ ] Create Github Repository 
-- [ ] Create ```README.md``` (this file). 
-- [ ] Get Audrey availability for next two weeks.
+- [x] Create Github Repository 
+- [x] Create ```README.md``` (this file). 
+- [x] Get Audrey availability for next two weeks.
 - [ ] Schedule meetings through end of September  
-- [ ] Create a website that acts as a primer for using github for creative projects
+- [x] Create a website that acts as a primer for using github for creative projects
    
 
  
