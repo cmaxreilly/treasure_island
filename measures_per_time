@@ -3,25 +3,58 @@
 # A simple python script that takes in a lenght of time in seconds, a number of beats per measure, and a bpm and spits out a number of bars that fits.
 
 import sys
+# Driver code
+def main():
+    if len(sys.argv) == 1:
+        interactive_command_line()
+    elif len(sys.argv) == 4:
+        command_line_arguments()
+    else:
+        print(usage_message)    
+
+usage_message = '''error: incorrect number of arguments.
+usage: can be called with no arguments or four arguments.
+four argument format: script {time in seconds} {beats per measure} {beats per minute}.'''
 
 def time_to_measures(time_in_seconds, beats_per_measure, beats_per_minute):
     number_of_measures = ((time_in_seconds * (beats_per_minute / 60)) / beats_per_measure)
     return number_of_measures
-    
-    
+
+def time_to_bpm(number_of_measures, beats_per_measure, time_in_seconds):
+    beats_per_minute = number_of_measures * beats_per_measure * 60 / time_in_seconds
+    return beats_per_minute
+
+def interactive_command_line():
+    usr = str(input("What do you need, a: bpm or b: measures? "))
+    if usr == "a":
+        number_of_measures = int(input("Number of measures: "))
+        beats_per_measure = int(input("Beats per measure: "))
+        time_in_seconds = int(input("Time in seconds: "))
+        bpm = time_to_bpm(number_of_measures, beats_per_measure, time_in_seconds)
+        print("Your piece in {} has a tempo of {} bpm. ".format(beats_per_measure, bpm))
+
+    elif usr == "b":
+        time_in_seconds = int(input("Time of selection in seconds: "))
+        beats_per_measure = int(input("Beats per measure: "))
+        beats_per_minute = int(input("Beats per minute: "))
+        number_of_measures = time_to_measures(time_in_seconds, beats_per_measure, beats_per_minute) 
+        print("You need {} bars in {}".format(number_of_measures, beats_per_measure))
+    else:
+        print("Error: Invalid argument.")
+        interactive_command_line()
+
+def command_line_arguments():
+    time_in_seconds = int(sys.argv[1])
+    beats_per_measure = int(sys.argv[2])
+    beats_per_minute = int(sys.argv[3])
+    number_of_measures = time_to_measures(time_in_seconds, beats_per_measure, beats_per_minute)
+
+    print("You need {} bars in {}".format(number_of_measures, beats_per_measure))
+
+
 
 
 while __name__ == "__main__":
-
-    if len(sys.argv) < 4:
-        print("Not enough data. Format: {len time in seconds} {beats per measure} {beats per minute}")
-        break 
-    else:
-        time_in_seconds = int(sys.argv[1])
-        beats_per_measure = int(sys.argv[2])
-        beats_per_minute = int(sys.argv[3])
-        number_of_measures = time_to_measures(time_in_seconds, beats_per_measure, beats_per_minute)
-
-        print("You need {} bars in {}".format(number_of_measures, beats_per_measure))
-        break
-
+    main()
+    break
+    
